@@ -1,65 +1,92 @@
-import Image from "next/image";
+'use client';
+import { useEffect } from 'react';
+import Navbar from '../components/Navbar';
+import InteractiveHero from '../components/InteractiveHero';
 
 export default function Home() {
+  useEffect(() => {
+    const handleScroll = () => {
+      const reveals = document.querySelectorAll('.reveal');
+      const windowHeight = window.innerHeight;
+      reveals.forEach(reveal => {
+        const elementTop = reveal.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          reveal.classList.add('active');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // הפעלה ראשונית לאנימציות שמופיעות מיד
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+    <>
+      <Navbar />
+      <main>
+        <InteractiveHero />
+
+        <section id="about" className="content-block reveal">
+          <h2 className="section-title"><span>LA STORIA</span>הסיפור שלנו</h2>
+          <div className="about-grid">
+            <div className="about-text">
+              <p>ב-Gelateria Crema אנחנו לא רק מייצרים גלידה, אנחנו משמרים מסורת איטלקית עתיקת יומין בלב ירושלים. כל מנה מיוצרת בעבודת יד מידי בוקר, תוך שימוש בחומרי גלם שנבחרו בקפידה.</p>
+              <br />
+              <p>מהפיסטוקים של סיציליה ועד לווניל של מדגסקר, המטרה שלנו היא אחת: להגיש לכם את הג'לאטו המושלם, במרקם קטיפתי ובטעם שאי אפשר לשכוח.</p>
+            </div>
+            <div className="about-image">
+              <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&q=80&w=800" alt="Authentic Gelato" />
+            </div>
+          </div>
+        </section>
+
+        <section id="flavors" className="content-block">
+          <h2 className="section-title reveal"><span>I GUSTI</span>הקלאסיקות שלנו</h2>
+          <div className="flavors-grid">
+            <div className="flavor-card reveal delay-1">
+              <h3>Pistacchio</h3>
+              <p>פיסטוק סיציליאני טהור, קלוי בעדינות ונטחן למחית עשירה שאין לה תחרות.</p>
+            </div>
+            <div className="flavor-card reveal delay-2">
+              <h3>Cioccolato</h3>
+              <p>שוקולד מריר ולרונה 70%, עוצמתי, נימוח וטבעוני לחלוטין.</p>
+            </div>
+            <div className="flavor-card reveal delay-3">
+              <h3>Nocciola</h3>
+              <p>אגוזי לוז מפיאמונטה, טעם אגוזי עמוק במרקם קטיפתי ממכר.</p>
+            </div>
+            <div className="flavor-card reveal delay-4">
+              <h3>Fragola</h3>
+              <p>סורבה תותים טריים מהשדה, קליל, מרענן ומלא בויטמינים של קיץ.</p>
+            </div>
+          </div>
+        </section>
+
+        <div className="info-section" id="info">
+          <div className="content-block reveal" style={{ padding: 0 }}>
+            <div className="info-container">
+              <div className="address-box">
+                <h2 className="section-title"><span>CONTATTO</span>בואו לבקר</h2>
+                <h3>Gelateria Crema</h3>
+                <p>רחוב יפו 113, ירושלים</p>
+              </div>
+              
+              <ul className="hours-list">
+                <li>ראשון - חמישי <span>09:00 - 22:00</span></li>
+                <li>יום שישי <span>09:00 - 14:00</span></li>
+                <li className="closed">יום שבת <span>סגור</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </main>
-    </div>
+
+      <footer>
+        <p className="english-logo">gelateria crema &copy; 2026</p>
+        <p style={{ marginTop: '10px', fontSize: '0.7rem', opacity: 0.5 }}>CRAFTED WITH PASSION IN JERUSALEM</p>
+      </footer>
+    </>
   );
 }
