@@ -32,7 +32,7 @@ export default function InteractiveHero() {
       <div ref={c3Ref} className="circle circle-3"></div>
 
       <div ref={heroRef} className="hero-content">
-        <div className="location">מ-1987 · רחוב יפו 113 ירושלים</div>
+        <div className="location">רחוב יפו 113 ירושלים</div>
         <div className="title-main" dir="ltr">Gelateria</div>
         <div className="title-italic" dir="ltr">Crema</div>
         <div className="description" dir="ltr">Artigianalità autentica</div>
