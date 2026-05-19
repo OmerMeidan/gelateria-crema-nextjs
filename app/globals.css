@@ -4,128 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --- העיצוב המקורי שלך (Pixel-Perfect) --- */
-:root {
-    --bg-color: #FAF8F5;
-    --text-color: #1A1612;
-    --accent-color: #B08D57;
-    --white: #FFFFFF;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-    font-family: 'Assistant', sans-serif !important;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+  body {
+    /* שימוש במשתנים מה-tailwind.config.ts שלך */
+    @apply bg-bg text-text antialiased overflow-x-hidden;
+    font-family: 'Assistant', sans-serif;
     line-height: 1.7;
-    overflow-x: hidden;
-}
+  }
 
-.english-logo {
-    font-family: 'Playfair Display', serif !important;
-    font-style: italic;
-    letter-spacing: 0.15em;
-    text-transform: lowercase;
-}
-
-/* --- תפריט ניווט מקורי --- */
-header.main-nav {
-    position: fixed; top: 0; width: 100%; padding: 1.5rem 8%;
-    display: flex; justify-content: space-between; align-items: center;
-    background-color: transparent; z-index: 1000; transition: all 0.4s ease;
-}
-header.main-nav.scrolled {
-    background-color: rgba(250, 248, 245, 0.95);
-    backdrop-filter: blur(15px); padding: 1rem 8%;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-.logo { font-size: 1.4rem; text-decoration: none; color: #e3dccf; font-weight: 500; transition: color 0.4s ease; }
-header.main-nav.scrolled .logo { color: var(--text-color); }
-
-nav ul { list-style: none; display: flex; gap: 1rem; }
-nav a {
-    text-decoration: none; color: #e3dccf; font-size: 0.95rem;
-    letter-spacing: 0.05em; font-weight: 600; padding: 10px 22px;
-    border-radius: 30px; border: 1px solid transparent; transition: all 0.3s ease;
-}
-nav a:hover {
-    background-color: rgba(227, 220, 207, 0.15);
-    border-color: rgba(227, 220, 207, 0.4); color: #ffffff;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-header.main-nav.scrolled nav a { color: var(--text-color); }
-header.main-nav.scrolled nav a:hover {
-    background-color: rgba(176, 141, 87, 0.1);
-    border-color: rgba(176, 141, 87, 0.3); color: var(--accent-color);
-    box-shadow: none;
-}
-
-/* --- אזור כניסה --- */
-.hero-section {
-    position: relative; height: 100vh; width: 100%;
-    background: linear-gradient(135deg, #2a2016 0%, #3e3020 100%);
-    color: #ffffff; display: flex; align-items: center; justify-content: center;
-    overflow: hidden; font-family: 'Montserrat', sans-serif !important; padding-top: 60px;
-}
-.circle { position: absolute; border-radius: 50%; border: 1px solid rgba(255, 215, 150, 0.05); pointer-events: none; transition: transform 0.1s ease-out; }
-.circle-1 { width: 800px; height: 800px; top: -150px; right: -100px; }
-.circle-2 { width: 900px; height: 900px; bottom: -300px; left: -200px; }
-.circle-3 { width: 450px; height: 450px; top: 50px; right: 15%; }
-
-.hero-content { text-align: center; z-index: 10; padding: 2rem; animation: fadeInUp 1.5s ease-out; will-change: transform, opacity; }
-.location { font-size: 1rem; letter-spacing: 3px; color: #b89f78; margin-bottom: 1.5rem; font-weight: 300; }
-.title-main { font-family: 'Playfair Display', serif !important; font-size: 5rem; font-weight: 400; color: #e3dccf; margin: 0; line-height: 1.1; }
-.title-italic { font-family: 'Playfair Display', serif !important; font-size: 5.5rem; font-style: italic; color: #bfa172; margin: 0; line-height: 1.1; }
-.description { font-size: 1.1rem; letter-spacing: 1.5px; color: #a8947e; margin-top: 2rem; margin-bottom: 2.5rem; font-weight: 300; }
-.btn {
-    display: inline-block; padding: 12px 35px; background-color: transparent; color: #e3dccf;
-    text-decoration: none; border: 1px solid rgba(227, 220, 207, 0.4); font-size: 1rem;
-    letter-spacing: 0.1em; transition: all 0.4s ease; backdrop-filter: blur(5px);
-    font-family: 'Assistant', sans-serif !important;
-}
-.btn:hover { background-color: #e3dccf; color: #2a2016; border-color: #e3dccf; transform: scale(1.05); }
-
-/* --- אזורי התוכן המקוריים --- */
-section.content-block { padding: 120px 8%; max-width: 1400px; margin: 0 auto; }
-.section-title { text-align: center; font-size: 2.2rem; margin-bottom: 4rem; font-weight: 300; letter-spacing: 0.05em; }
-.section-title span { display: block; font-size: 0.8rem; text-transform: uppercase; color: var(--accent-color); margin-bottom: 10px; letter-spacing: 0.3em; font-family: 'Montserrat', sans-serif !important; }
-
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-.about-text { font-size: 1.15rem; font-weight: 300; color: #4A443F; }
-.about-image { overflow: hidden; border-radius: 4px; }
-.about-image img { width: 100%; display: block; filter: grayscale(20%); transition: all 0.8s ease; }
-.about-image:hover img { filter: grayscale(0%); transform: scale(1.05); }
-
-.flavors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; }
-.flavor-card { text-align: center; padding: 3rem 1.5rem; border: 1px solid #EAE4DD; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); background-color: transparent; }
-.flavor-card:hover { border-color: var(--accent-color); background-color: var(--white); box-shadow: 0 15px 35px rgba(0,0,0,0.05); transform: translateY(-10px); }
-.flavor-card h3 { font-family: 'Playfair Display', serif !important; font-size: 1.6rem; margin-bottom: 15px; color: var(--text-color); }
-.flavor-card p { font-size: 0.95rem; font-weight: 300; color: #6D665E; }
-
-.info-section { background-color: #F3F0EC; padding: 100px 8%; text-align: center; }
-.info-container { max-width: 700px; margin: 0 auto; }
-.address-box { margin-bottom: 3rem; }
-.address-box h3 { font-family: 'Playfair Display', serif !important; font-size: 1.8rem; margin-bottom: 10px; font-weight: 400; }
-.address-box p { font-size: 1.2rem; color: var(--accent-color); letter-spacing: 0.05em; }
-.hours-list { list-style: none; display: inline-block; text-align: right; border-top: 1px solid #DED7CE; padding-top: 2rem; width: 100%; max-width: 400px; }
-.hours-list li { margin-bottom: 1.2rem; display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 300; }
-.hours-list span { font-weight: 600; }
-.closed { color: #A63D40; }
-
-footer { padding: 4rem 8%; text-align: center; background-color: var(--white); border-top: 1px solid #EAE4DD; font-size: 0.85rem; letter-spacing: 0.1em; color: #8C847C; }
-
-/* --- אנימציות --- */
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
-.reveal.active { opacity: 1; transform: translateY(0); }
-.delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
-
-@media (max-width: 900px) {
-    header.main-nav { padding: 1rem 5%; } nav ul { display: none; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .title-main { font-size: 3.5rem; } .title-italic { font-size: 4rem; }
-    .location { font-size: 0.85rem; letter-spacing: 1.5px; } .circle-1 { width: 500px; height: 500px; }
-    section.content-block { padding: 80px 5%; }
+  /* קלאס אחד בלבד שנשאר לאנגלית היוקרתית */
+  .english-logo {
+    font-family: 'Playfair Display', serif;
+    @apply italic tracking-[0.15em] lowercase;
+  }
 }
