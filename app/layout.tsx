@@ -9,7 +9,8 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="he" dir="rtl">
-      <body>
+      {/* שמנו את צבע הרקע, הטקסט, והפונט ישירות על ה-body! */}
+      <body className="bg-bg text-text font-sans antialiased overflow-x-hidden">
         {children}
       </body>
     </html>

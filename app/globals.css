@@ -10,13 +10,9 @@
   }
 
   body {
-    /* שימוש במשתנים מה-tailwind.config.ts שלך */
-    @apply bg-bg text-text antialiased overflow-x-hidden;
-    font-family: 'Assistant', sans-serif;
     line-height: 1.7;
   }
 
-  /* קלאס אחד בלבד שנשאר לאנגלית היוקרתית */
   .english-logo {
     font-family: 'Playfair Display', serif;
     @apply italic tracking-[0.15em] lowercase;
