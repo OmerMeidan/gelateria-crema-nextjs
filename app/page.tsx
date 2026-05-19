@@ -1,91 +1,134 @@
 'use client';
-import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import InteractiveHero from '../components/InteractiveHero';
+import { motion } from 'framer-motion';
+
+// מערך הטעמים עם צבעי הפסטל הדינמיים (יוקרה סנסורית)
+const FLAVORS = [
+  { id: 1, title: 'Pistacchio', desc: 'פיסטוק סיציליאני טהור, קלוי בעדינות ונטחן למחית עשירה שאין לה תחרות.', hoverBg: '#EAECE5' },
+  { id: 2, title: 'Cioccolato', desc: 'שוקולד מריר ולרונה 70%, עוצמתי, נימוח וטבעוני לחלוטין.', hoverBg: '#F4F1EE' },
+  { id: 3, title: 'Nocciola', desc: 'אגוזי לוז מפיאמונטה, טעם אגוזי עמוק במרקם קטיפתי ממכר.', hoverBg: '#F7F3EB' },
+  { id: 4, title: 'Fragola', desc: 'סורבה תותים טריים מהשדה, קליל, מרענן ומלא בויטמינים של קיץ.', hoverBg: '#FDF1F2' },
+];
+
+// הגדרת אנימציית הופעה חלקה ואלגנטית (Replaces the old .reveal CSS)
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
 
 export default function Home() {
-  useEffect(() => {
-    const handleScroll = () => {
-      const reveals = document.querySelectorAll('.reveal');
-      const windowHeight = window.innerHeight;
-      reveals.forEach(reveal => {
-        const elementTop = reveal.getBoundingClientRect().top;
-        if (elementTop < windowHeight - 100) {
-          reveal.classList.add('active');
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // הפעלה ראשונית לאנימציות שמופיעות מיד
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <>
       <Navbar />
       <main>
         <InteractiveHero />
 
-        <section id="about" className="content-block reveal">
-          <h2 className="section-title"><span>LA STORIA</span>הסיפור שלנו</h2>
-          <div className="about-grid">
-            <div className="about-text">
+        {/* --- אזור: הסיפור שלנו --- */}
+        <motion.section 
+          id="about" 
+          className="py-[80px] md:py-[120px] px-[5%] md:px-[8%] max-w-[1400px] mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeInUp}
+        >
+          <h2 className="text-center text-[2.2rem] mb-[4rem] font-light tracking-[0.05em]">
+            <span className="block text-[0.8rem] uppercase text-accent mb-[10px] tracking-[0.3em] font-montserrat">LA STORIA</span>
+            הסיפור שלנו
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[3rem] md:gap-[6rem] items-center">
+            <div className="text-[1.15rem] font-light text-[#4A443F]">
               <p>ב-Gelateria Crema אנחנו לא רק מייצרים גלידה, אנחנו משמרים מסורת איטלקית עתיקת יומין בלב ירושלים. כל מנה מיוצרת בעבודת יד מידי בוקר, תוך שימוש בחומרי גלם שנבחרו בקפידה.</p>
               <br />
               <p>מהפיסטוקים של סיציליה ועד לווניל של מדגסקר, המטרה שלנו היא אחת: להגיש לכם את הג'לאטו המושלם, במרקם קטיפתי ובטעם שאי אפשר לשכוח.</p>
             </div>
-            <div className="about-image">
-              <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&q=80&w=800" alt="Authentic Gelato" />
+            {/* אפקט זום וצבע נקי לתמונה */}
+            <div className="overflow-hidden rounded-[4px] group">
+              <img 
+                src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&q=80&w=800" 
+                alt="Authentic Gelato" 
+                className="w-full block grayscale-[20%] transition-all duration-[800ms] ease-out group-hover:grayscale-0 group-hover:scale-105"
+              />
             </div>
+          </div>
+        </motion.section>
+
+        {/* --- אזור: הטעמים --- */}
+        <section id="flavors" className="py-[80px] md:py-[120px] px-[5%] md:px-[8%] max-w-[1400px] mx-auto">
+          <motion.h2 
+            className="text-center text-[2.2rem] mb-[4rem] font-light tracking-[0.05em]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
+            <span className="block text-[0.8rem] uppercase text-accent mb-[10px] tracking-[0.3em] font-montserrat">I GUSTI</span>
+            הקלאסיקות שלנו
+          </motion.h2>
+          
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[3rem]">
+            {FLAVORS.map((flavor, index) => (
+              <motion.div
+                key={flavor.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                // ה-delay מייצר את אפקט ההופעה המדורגת אחד אחרי השני
+                transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
+                // אפקט המרקם הרך: קפיצה קטנה למעלה ושינוי צבע הרקע לפי הטעם
+                whileHover={{ y: -10, backgroundColor: flavor.hoverBg, borderColor: 'transparent' }}
+                className="text-center p-[3rem_1.5rem] border border-[#EAE4DD] bg-transparent transition-colors duration-500 rounded-sm cursor-pointer hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)]"
+              >
+                <h3 className="font-serif text-[1.6rem] mb-[15px] text-text">
+                  {flavor.title}
+                </h3>
+                <p className="font-sans text-[0.95rem] font-light text-[#5A524A] leading-relaxed">
+                  {flavor.desc}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </section>
 
-        <section id="flavors" className="content-block">
-          <h2 className="section-title reveal"><span>I GUSTI</span>הקלאסיקות שלנו</h2>
-          <div className="flavors-grid">
-            <div className="flavor-card reveal delay-1">
-              <h3>Pistacchio</h3>
-              <p>פיסטוק סיציליאני טהור, קלוי בעדינות ונטחן למחית עשירה שאין לה תחרות.</p>
-            </div>
-            <div className="flavor-card reveal delay-2">
-              <h3>Cioccolato</h3>
-              <p>שוקולד מריר ולרונה 70%, עוצמתי, נימוח וטבעוני לחלוטין.</p>
-            </div>
-            <div className="flavor-card reveal delay-3">
-              <h3>Nocciola</h3>
-              <p>אגוזי לוז מפיאמונטה, טעם אגוזי עמוק במרקם קטיפתי ממכר.</p>
-            </div>
-            <div className="flavor-card reveal delay-4">
-              <h3>Fragola</h3>
-              <p>סורבה תותים טריים מהשדה, קליל, מרענן ומלא בויטמינים של קיץ.</p>
-            </div>
-          </div>
-        </section>
-
-        <div className="info-section" id="info">
-          <div className="content-block reveal" style={{ padding: 0 }}>
-            <div className="info-container">
-              <div className="address-box">
-                <h2 className="section-title"><span>CONTATTO</span>בואו לבקר</h2>
-                <h3>Gelateria Crema</h3>
-                <p>רחוב יפו 113, ירושלים</p>
+        {/* --- אזור: יצירת קשר ושעות --- */}
+        <div className="bg-[#F3F0EC] py-[100px] px-[5%] md:px-[8%] text-center" id="info">
+          <motion.div 
+            className="max-w-[1400px] mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
+            <div className="max-w-[700px] mx-auto">
+              <div className="mb-[3rem]">
+                <h2 className="text-center text-[2.2rem] mb-[4rem] font-light tracking-[0.05em]">
+                  <span className="block text-[0.8rem] uppercase text-accent mb-[10px] tracking-[0.3em] font-montserrat">CONTATTO</span>
+                  בואו לבקר
+                </h2>
+                <h3 className="font-serif text-[1.8rem] mb-[10px] font-normal">Gelateria Crema</h3>
+                <p className="text-[1.2rem] text-accent tracking-[0.05em]">רחוב יפו 113, ירושלים</p>
               </div>
               
-              <ul className="hours-list">
-                <li>ראשון - חמישי <span>09:00 - 22:00</span></li>
-                <li>יום שישי <span>09:00 - 14:00</span></li>
-                <li className="closed">יום שבת <span>סגור</span></li>
+              <ul className="list-none inline-block text-right border-t border-[#DED7CE] pt-[2rem] w-full max-w-[400px]">
+                <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light">
+                  ראשון - חמישי <span className="font-semibold">09:00 - 22:00</span>
+                </li>
+                <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light">
+                  יום שישי <span className="font-semibold">09:00 - 14:00</span>
+                </li>
+                <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light text-[#A63D40]">
+                  יום שבת <span className="font-semibold">סגור</span>
+                </li>
               </ul>
             </div>
-          </div>
+          </motion.div>
         </div>
       </main>
 
-      <footer>
+      <footer className="py-[4rem] px-[5%] md:px-[8%] text-center bg-white border-t border-[#EAE4DD] text-[0.85rem] tracking-[0.1em] text-[#8C847C]">
         <p className="english-logo">gelateria crema &copy; 2026</p>
-        <p style={{ marginTop: '10px', fontSize: '0.7rem', opacity: 0.5 }}>CRAFTED WITH PASSION IN JERUSALEM</p>
+        <p className="mt-[10px] text-[0.7rem] opacity-50 uppercase font-montserrat">Crafted with passion in Jerusalem</p>
       </footer>
     </>
   );
