@@ -5,7 +5,7 @@ import { motion, Variants } from 'framer-motion';
 // מערך הטעמים עם צבעי הפסטל הדינמיים (יוקרה סנסורית)
 const FLAVORS = [
   { id: 1, title: 'Pistacchio', desc: 'פיסטוק סיציליאני טהור, קלוי בעדינות ונטחן למחית עשירה שאין לה תחרות.', hoverBg: '#EAECE5' },
-  { id: 2, title: 'Cioccolato', desc: 'שוקולד מריר ולרונה 70%, עוצמתי, נימוח וטבעוני לחלוטין.', hoverBg: '#8F6251' },
+  { id: 2, title: 'Cioccolato', desc: 'שוקולד מריר ולרונה 70%, עוצמתי, נימוח וטבעוני לחלוטין.', hoverBg: '#C29582' },
   { id: 3, title: 'Nocciola', desc: 'אגוזי לוז מפיאמונטה, טעם אגוזי עמוק במרקם קטיפתי ממכר.', hoverBg: '#F7F3EB' },
   { id: 4, title: 'Fragola', desc: 'סורבה תותים טריים מהשדה, קליל, מרענן ומלא בויטמינים של קיץ.', hoverBg: '#FDF1F2' },
 ];
