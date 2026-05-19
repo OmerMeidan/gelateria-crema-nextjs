@@ -67,17 +67,19 @@ export default function Home() {
           </motion.h2>
           
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[3rem]">
-            {FLAVORS.map((flavor, index) => (
+          {FLAVORS.map((flavor, index) => (
               <motion.div
                 key={flavor.id}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                // ה-delay מייצר את אפקט ההופעה המדורגת אחד אחרי השני
                 transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
-                // אפקט המרקם הרך: קפיצה קטנה למעלה ושינוי צבע הרקע לפי הטעם
-                whileHover={{ y: -10, backgroundColor: flavor.hoverBg, borderColor: 'transparent' }}
-                className="text-center p-[3rem_1.5rem] border border-[#EAE4DD] bg-transparent transition-colors duration-500 rounded-sm cursor-pointer hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)]"
+                
+                // הטריק של הארכיטקטים: הגדרת הצבע הדינמי כמשתנה CSS ישירות על האלמנט
+                style={{ '--hover-bg': flavor.hoverBg } as React.CSSProperties}
+                
+                // שימוש ב-Tailwind לניהול ה-Hover הטבעי של הדפדפן (ללא קליקים!)
+                className="text-center p-[3rem_1.5rem] border border-[#EAE4DD] bg-transparent transition-all duration-500 rounded-sm cursor-pointer hover:-translate-y-2 hover:bg-[var(--hover-bg)] hover:border-transparent hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)]"
               >
                 <h3 className="font-serif text-[1.6rem] mb-[15px] text-text">
                   {flavor.title}
