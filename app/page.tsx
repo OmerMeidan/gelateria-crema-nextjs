@@ -1,8 +1,7 @@
 'use client';
 import Navbar from '../components/Navbar';
 import InteractiveHero from '../components/InteractiveHero';
-import { motion } from 'framer-motion';
-
+import { motion, Variants } from 'framer-motion';
 // מערך הטעמים עם צבעי הפסטל הדינמיים (יוקרה סנסורית)
 const FLAVORS = [
   { id: 1, title: 'Pistacchio', desc: 'פיסטוק סיציליאני טהור, קלוי בעדינות ונטחן למחית עשירה שאין לה תחרות.', hoverBg: '#EAECE5' },
@@ -11,8 +10,8 @@ const FLAVORS = [
   { id: 4, title: 'Fragola', desc: 'סורבה תותים טריים מהשדה, קליל, מרענן ומלא בויטמינים של קיץ.', hoverBg: '#FDF1F2' },
 ];
 
-// הגדרת אנימציית הופעה חלקה ואלגנטית (Replaces the old .reveal CSS)
-const fadeInUp = {
+// הגדרת אנימציית הופעה חלקה ואלגנטית עם Type רשמי
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
