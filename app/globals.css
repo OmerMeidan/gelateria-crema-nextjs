@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;600&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500;1,600&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* פקודת הטעינה החדשה של Tailwind v4 */
+@import "tailwindcss";
+
+/* הגדרת ה-Design System שלנו בשיטה החדשה */
+@theme {
+  --color-bg: #FAF8F5;
+  --color-text: #1A1612;
+  --color-accent: #B08D57;
+  --color-white: #FFFFFF;
+  
+  --font-sans: "Assistant", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
 
 @layer base {
   html {
@@ -14,7 +25,9 @@
   }
 
   .english-logo {
-    font-family: 'Playfair Display', serif;
-    @apply italic tracking-[0.15em] lowercase;
+    font-family: var(--font-serif);
+    font-style: italic;
+    letter-spacing: 0.15em;
+    text-transform: lowercase;
   }
 }
