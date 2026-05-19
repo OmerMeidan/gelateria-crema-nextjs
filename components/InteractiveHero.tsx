@@ -43,7 +43,7 @@ export default function InteractiveHero() {
           initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}
           className="text-[0.85rem] md:text-base tracking-[3px] text-[#b89f78] mb-6 font-light"
         >
-          מ-1987 · רחוב יפו 113 ירושלים
+        רחוב יפו 113 ירושלים
         </motion.div>
         
         <motion.h1 
