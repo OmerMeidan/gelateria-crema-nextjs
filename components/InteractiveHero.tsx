@@ -23,7 +23,7 @@ export default function InteractiveHero() {
         transition={{ duration: 1.5, ease: "easeOut" }}
         className="text-center z-10 p-8"
       >
-        <div className="text-[0.85rem] md:text-base tracking-[3px] text-[#b89f78] mb-6 font-light">מ-1987 · רחוב יפו 113 ירושלים</div>
+        <div className="text-[0.85rem] md:text-base tracking-[3px] text-[#b89f78] mb-6 font-light">רחוב יפו 113 ירושלים</div>
         <h1 className="font-serif text-6xl md:text-8xl font-normal text-[#e3dccf] m-0 leading-tight" dir="ltr">Gelateria</h1>
         <h2 className="font-serif text-7xl md:text-[5.5rem] italic text-[#bfa172] m-0 leading-tight" dir="ltr">Crema</h2>
         <p className="text-lg md:text-2xl tracking-[1.5px] text-[#a8947e] mt-8 mb-10 font-light" dir="ltr">Artigianalità autentica</p>
