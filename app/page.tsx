@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar';
 import InteractiveHero from '../components/InteractiveHero';
 import { motion, Variants } from 'framer-motion';
+import React, { useState } from 'react';
 // מערך הטעמים עם צבעי הפסטל הדינמיים (יוקרה סנסורית)
 const FLAVORS = [
   { id: 1, title: 'Pistacchio', desc: 'פיסטוק סיציליאני טהור, קלוי בעדינות ונטחן למחית עשירה שאין לה תחרות.', hoverBg: '#EAECE5' },
@@ -17,6 +18,7 @@ const fadeInUp: Variants = {
 };
 
 export default function Home() {
+  const [activeFlavor, setActiveFlavor] = useState<number | null>(null);
   return (
     <>
       <Navbar />
@@ -66,31 +68,60 @@ export default function Home() {
             הקלאסיקות שלנו
           </motion.h2>
           
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[3rem]">
-          {FLAVORS.map((flavor, index) => (
-              <motion.div
-              key={flavor.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
-              
-              // הפתרון היוקרתי: Framer Motion מנהל את הצבעים והתנועה!
-              whileHover={{ backgroundColor: flavor.hoverBg, y: -8 }}
-              whileTap={{ backgroundColor: flavor.hoverBg, scale: 0.98 }} // נותן פידבק במגע במובייל
-              
-              // הסרנו את ה-hover של Tailwind והשארנו רק עיצוב בסיסי
-              className="text-center p-[3rem_1.5rem] border border-[#EAE4DD] bg-transparent rounded-sm cursor-pointer"
-            >
-                <h3 className="font-serif text-[1.6rem] mb-[15px] text-text">
-                  {flavor.title}
-                </h3>
-                <p className="font-sans text-[0.95rem] font-light text-[#5A524A] leading-relaxed">
-                  {flavor.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[3rem]">
+  {FLAVORS.map((flavor, index) => (
+    <motion.div
+      key={flavor.id}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0, 
+        transition: { duration: 0.8, delay: index * 0.15 } 
+      }}
+      viewport={{ once: true, margin: "-50px" }}
+      
+      // ווב (דסקטופ): ה-Hover המקורי והחלק שרצית
+      whileHover={{ 
+        backgroundColor: flavor.hoverBg, 
+        y: -8, 
+        borderColor: "#B08D57",
+        transition: { duration: 0.3 }
+      }}
+      
+      // מובייל: אנימציית פייד לצבע המקורי כשהכרטיסייה פעילה
+      animate={
+        activeFlavor === flavor.id
+          ? { 
+              backgroundColor: flavor.hoverBg, 
+              y: -8, 
+              borderColor: "#B08D57", 
+              transition: { duration: 0.4, ease: "easeOut" } 
+            }
+          : { 
+              backgroundColor: "transparent", 
+              y: 0, 
+              borderColor: "#EAE4DD",
+              transition: { duration: 0.4 }
+            }
+      }
+
+      // מנגנון הלחיצה למובייל: לחיצה מדליקה, לחיצה חוזרת מכבה
+      onClick={() => setActiveFlavor(activeFlavor === flavor.id ? null : flavor.id)}
+      
+      // מנקה את ה-State אם משתמש בדסקטופ עוזב את הכרטיסייה אחרי שלחץ בטעות
+      onHoverEnd={() => setActiveFlavor(null)}
+
+      className="text-center p-[3rem_1.5rem] border bg-transparent rounded-sm cursor-pointer transition-shadow duration-300 hover:shadow-[0_15px_35px_rgba(0,0,0,0.05)]"
+    >
+      <h3 className="font-serif text-[1.6rem] mb-[15px] text-text">
+        {flavor.title}
+      </h3>
+      <p className="text-[0.95rem] font-light text-[#6D665E]">
+        {flavor.desc}
+      </p>
+    </motion.div>
+  ))}
+</div>
         </section>
 
         {/* --- אזור: יצירת קשר ושעות --- */}
