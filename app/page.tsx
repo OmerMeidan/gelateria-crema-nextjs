@@ -118,7 +118,7 @@ export default function Home() {
                 <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light">
                   יום שישי <span className="font-semibold">09:00 - 14:00</span>
                 </li>
-                <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light text-[#A63D40]">
+                <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light">
                   יום שבת <span className="font-semibold">כחצי שעה לאחר צאת השבת - 23:00</span>
                 </li>
               </ul>
