@@ -119,7 +119,7 @@ export default function Home() {
                   יום שישי <span className="font-semibold">09:00 - 14:00</span>
                 </li>
                 <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light text-[#A63D40]">
-                  יום שבת <span className="font-semibold">סגור</span>
+                  יום שבת <span className="font-semibold">כחצי שעה לאחר צאת השבת - 23:00</span>
                 </li>
               </ul>
             </div>
