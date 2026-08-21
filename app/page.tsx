@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import InteractiveHero from '../components/InteractiveHero';
 import { motion, Variants } from 'framer-motion';
 import React, { useState } from 'react';
+import Image from 'next/image';
 // מערך הטעמים עם צבעי הפסטל הדינמיים (יוקרה סנסורית)
 const FLAVORS = [
   { id: 1, title: 'Pistacchio', desc: 'פיסטוק סיציליאני טהור, קלוי בעדינות ונטחן למחית עשירה שאין לה תחרות.', hoverBg: '#EAECE5' },
@@ -42,14 +43,16 @@ export default function Home() {
             <div className="text-[1.15rem] font-light text-[#4A443F]">
               <p>ב-Gelateria Crema אנחנו לא רק מייצרים גלידה, אנחנו משמרים מסורת איטלקית עתיקת יומין בלב ירושלים. כל מנה מיוצרת בעבודת יד מידי בוקר, תוך שימוש בחומרי גלם שנבחרו בקפידה.</p>
               <br />
-              <p>מהפיסטוקים של סיציליה ועד לווניל של מדגסקר, המטרה שלנו היא אחת: להגיש לכם את הג'לאטו המושלם, במרקם קטיפתי ובטעם שאי אפשר לשכוח.</p>
+              <p>מהפיסטוקים של סיציליה ועד לווניל של מדגסקר, המטרה שלנו היא אחת: להגיש לכם את הג&apos;לאטו המושלם, במרקם קטיפתי ובטעם שאי אפשר לשכוח.</p>
             </div>
             {/* אפקט זום וצבע נקי לתמונה */}
             <div className="overflow-hidden rounded-[4px] group">
-              <img 
-                src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&q=80&w=800" 
-                alt="Authentic Gelato" 
-                className="w-full block grayscale-[20%] transition-all duration-[800ms] ease-out group-hover:grayscale-0 group-hover:scale-105"
+              <Image
+                src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&q=80&w=800"
+                alt="Authentic Gelato"
+                width={800}
+                height={533}
+                className="w-full h-auto block grayscale-[20%] transition-all duration-[800ms] ease-out group-hover:grayscale-0 group-hover:scale-105"
               />
             </div>
           </div>
