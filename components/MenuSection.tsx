@@ -22,14 +22,39 @@ const fadeInUp: Variants = {
 };
 
 function FlavorGrid({ items }: { items: FlavorItem[] }) {
+  // כמו כרטיסי הטעמים המוצגים למעלה: whileHover מטפל בדסקטופ, וה-state
+  // מטפל במובייל - נגיעה מדליקה את צבע הטעם, נגיעה חוזרת מכבה אותו.
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {items.map((item) => (
         <motion.div
           key={item.name}
-          whileHover={{ backgroundColor: item.color, y: -5, borderColor: '#B08D57' }}
-          transition={{ duration: 0.3 }}
-          className="flex flex-col gap-1 text-center border border-[#EAE4DD] rounded-sm bg-white py-[1.2rem] px-[1rem]"
+          whileHover={{
+            backgroundColor: item.color,
+            y: -5,
+            borderColor: '#B08D57',
+            transition: { duration: 0.3 },
+          }}
+          animate={
+            activeItem === item.name
+              ? {
+                  backgroundColor: item.color,
+                  y: -5,
+                  borderColor: '#B08D57',
+                  transition: { duration: 0.4, ease: 'easeOut' },
+                }
+              : {
+                  backgroundColor: '#FFFFFF',
+                  y: 0,
+                  borderColor: '#EAE4DD',
+                  transition: { duration: 0.4 },
+                }
+          }
+          onClick={() => setActiveItem(activeItem === item.name ? null : item.name)}
+          onHoverEnd={() => setActiveItem(null)}
+          className="flex flex-col gap-1 text-center border rounded-sm py-[1.2rem] px-[1rem] cursor-pointer"
         >
           <span>
             <span
