@@ -17,8 +17,8 @@ export default function Navbar() {
       </a>
       <nav className="hidden md:block">
         <ul className="flex gap-4 list-none m-0 p-0">
-          {['הסיפור שלנו', 'הטעמים שלנו', 'צרו קשר'].map((item, i) => {
-            const href = ['#about', '#flavors', '#info'][i];
+          {['הסיפור שלנו', 'הטעמים שלנו', 'התפריט המלא', 'צרו קשר'].map((item, i) => {
+            const href = ['#about', '#flavors', '#menu', '#info'][i];
             return (
               <li key={item}>
                 <a

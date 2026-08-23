@@ -1,6 +1,7 @@
 'use client';
 import Navbar from '../components/Navbar';
 import InteractiveHero from '../components/InteractiveHero';
+import MenuSection from '../components/MenuSection';
 import { motion, Variants } from 'framer-motion';
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -125,7 +126,13 @@ export default function Home() {
     </motion.div>
   ))}
 </div>
+
+<p className="text-center mt-[3rem] text-[0.95rem] font-light text-[#6D665E]">
+  אלו רק 4 מתוך 30+ הטעמים שלנו — <a href="#menu" className="text-accent font-semibold border-b border-transparent hover:border-accent transition-colors duration-300">לתפריט המלא ←</a>
+</p>
         </section>
+
+        <MenuSection />
 
         {/* --- אזור: יצירת קשר ושעות --- */}
         <div className="bg-[#F3F0EC] py-[100px] px-[5%] md:px-[8%] text-center" id="info">
