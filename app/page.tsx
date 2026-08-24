@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar';
 import InteractiveHero from '../components/InteractiveHero';
 import MenuSection from '../components/MenuSection';
+import GalleryReel from '../components/GalleryReel';
 import { motion, Variants } from 'framer-motion';
 import React, { useState } from 'react';
 import Image from 'next/image';
@@ -133,6 +134,8 @@ export default function Home() {
         </section>
 
         <MenuSection />
+
+        <GalleryReel />
 
         {/* --- אזור: יצירת קשר ושעות --- */}
         <div className="bg-[#F3F0EC] py-[100px] px-[5%] md:px-[8%] text-center" id="info">
