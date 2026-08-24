@@ -155,13 +155,16 @@ export default function Home() {
               
               <ul className="list-none inline-block text-right border-t border-[#DED7CE] pt-[2rem] w-full max-w-[400px]">
                 <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light">
-                  ראשון - חמישי <span className="font-semibold">09:00 - 22:00</span>
+                  ראשון - רביעי <span className="font-semibold">10:00 - 22:00</span>
                 </li>
                 <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light">
-                  יום שישי <span className="font-semibold">09:00 - 14:00</span>
+                  חמישי <span className="font-semibold">10:00 - 00:00</span>
                 </li>
                 <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light">
-                  יום שבת <span className="font-semibold">כחצי שעה לאחר צאת השבת - 23:00</span>
+                  יום שישי <span className="font-semibold">10:00 - 16:00</span>
+                </li>
+                <li className="mb-[1.2rem] flex justify-between text-[1.1rem] font-light">
+                  יום שבת <span className="font-semibold">כחצי שעה לאחר צאת השבת - 00:00</span>
                 </li>
               </ul>
             </div>
