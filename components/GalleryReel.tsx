@@ -21,7 +21,7 @@ export default function GalleryReel() {
         <span className="block text-center text-[0.8rem] uppercase text-accent mb-[10px] tracking-[0.3em] font-montserrat">
           MOMENTI
         </span>
-        <h2 className="text-center text-[2.2rem] mb-[3.5rem] font-light tracking-[0.05em]">רגעים מהמעבדה</h2>
+        <h2 className="text-center text-[2.2rem] mb-[3.5rem] font-light tracking-[0.05em]">רגעים ב-Crema</h2>
       </div>
 
       <div className="reel-viewport" dir="ltr">
